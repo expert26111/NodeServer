@@ -3,9 +3,9 @@ const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
-const index = require('./routes/index');
-const post = require('./routes/post');
-const user = require('./routes/user');
+const index = require('./routes/Index');
+const post = require('./routes/Post');
+const user = require('./routes/User');
 const latest = require('./routes/latest');
 
 const app = express();
