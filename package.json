@@ -1,0 +1,26 @@
+{
+  "name": "hacker-news-rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MDJ-Mikkel-Djurhuus/hacker-news-rest-api.git"
+  },
+  "author": "mikkel.djurhuus@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MDJ-Mikkel-Djurhuus/hacker-news-rest-api/issues"
+  },
+  "homepage": "https://github.com/MDJ-Mikkel-Djurhuus/hacker-news-rest-api#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.12.1"
+  }
+}
