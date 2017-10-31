@@ -9,4 +9,4 @@ services:
        MYSQL_ROOT_PASSWORD: admin
        MYSQL_DATABASE: hackernews
     ports:
-       - "8001:3306"
+       - "8080:3306"
