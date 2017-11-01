@@ -14,7 +14,7 @@ var User = {
         return db.query("delete from user where username=?", [name], callback);
     },
     updateUser: function (User, callback) {
-        return db.query("update user set pwd=? where username=?", [User.pwd, User.name], callback);
+        return db.query("update user set pwd_hash=? where username=?", [User.pwd, User.name], callback);
     }
 
 };

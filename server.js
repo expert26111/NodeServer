@@ -7,6 +7,7 @@ const index = require('./routes/Index');
 const post = require('./routes/Post');
 const user = require('./routes/User');
 const latest = require('./routes/latest');
+const status = require('./routes/status');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // app.use('/', index);
+app.use('/status',status);
 app.use('/post', post);
 app.use('/user', user);
 app.use('/latest',latest);

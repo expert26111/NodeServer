@@ -6,7 +6,7 @@ var Post = require('../models/Post');
 router.post('/', function (req, res, next)
 {
             console.log("the body is "+req.body);
-            Post.addPostArray(req.body, function (err, count)
+            Post.addPost(req.body, function (err, count)
             {
                 if (err)
                 {
@@ -17,6 +17,23 @@ router.post('/', function (req, res, next)
                     res.json(req.body);
                 }
             });
+});
+
+
+router.post('/array', function (req, res, next)
+{
+    console.log("the body is ",req.body);
+    Post.addPostArray(req.body, function (err, count)
+    {
+        if (err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(req.body);
+        }
+    });
 });
 
 router.post('/noid', function (req, res, next)

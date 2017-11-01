@@ -46,13 +46,19 @@ var Post = {
         return db.query("Select * from post ORDER BY hanesst_id DESC LIMIT 1",[id], callback);
     },
 
+    // getstatus: function(id,callback)
+    // {
+    //     return db.query("Select * from post ORDER BY hanesst_id DESC LIMIT 1",[id], callback);
+    // },
+
+
     addPost: function(Post, callback)
     {
         console.log("the post is ", Post);
 
         return db.query("Insert into post values(?,?,?,?,?,?,?,?)",
             [
-                Post.hanesst_id,
+                 Post.hanesst_id,
                 Post.post_title,
                 Post.post_text,
                 Post.post_url,
@@ -86,21 +92,7 @@ var Post = {
                 callback);
 
         }
-        // return db.query("Insert into post values(?,?,?,?,?,?,?,?)",
-        //     [
-        //         Post.hanesst_id,
-        //         Post.post_title,
-        //         Post.post_text,
-        //         Post.post_url,
-        //         Post.post_type,
-        //         Post.post_parent,
-        //         Post.username,
-        //         Post.pwd_hash
-        //     ],
-        //     callback);
     },
-
-
 
     addPostnoid: function(post_title, post_text ,post_url,post_type,post_parent,
                           username,pwd_hash,
@@ -109,16 +101,6 @@ var Post = {
         var values = [post_title,post_text, post_url,post_type, post_parent,username, pwd_hash ]
         console.log("the post is ", Post);
         return db.query("Insert into post (post_title,post_text,post_url,post_type,post_parent,username,pwd_hash) values(?,?,?,?,?,?,?)",
-            // [
-            //     Post.hanesst_id,
-            //     Post.post_title,
-            //     Post.post_text,
-            //     Post.post_url,
-            //     Post.post_type,
-            //     Post.post_parent,
-            //     Post.username,
-            //     Post.pwd_hash
-            // ],
             values,
             callback);
     },

@@ -81,7 +81,7 @@ router.delete('/:name', function (req, res, next) {
 
 router.put('/:name', function (req, res, next) {
 
-    User.updateUser(req.params.name, req.body, function (err, rows) {
+    User.updateUser( req.body, function (err, rows) {
 
         if (err) {
             res.json(err);
@@ -91,4 +91,5 @@ router.put('/:name', function (req, res, next) {
         }
     });
 });
+
 module.exports = router;
