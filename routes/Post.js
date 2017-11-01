@@ -5,7 +5,8 @@ var Post = require('../models/Post');
 
 router.post('/', function (req, res, next)
 {
-            Post.addPost(req.body, function (err, count)
+            console.log("the body is "+req.body);
+            Post.addPostArray(req.body, function (err, count)
             {
                 if (err)
                 {

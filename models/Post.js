@@ -49,6 +49,7 @@ var Post = {
     addPost: function(Post, callback)
     {
         console.log("the post is ", Post);
+
         return db.query("Insert into post values(?,?,?,?,?,?,?,?)",
             [
                 Post.hanesst_id,
@@ -62,6 +63,43 @@ var Post = {
             ],
             callback);
     },
+
+
+    addPostArray: function(Post, callback)
+    {
+        console.log("the post is array ", Post);
+
+            for(var i = 0; i < Post.length; i++)
+        {
+
+            db.query("Insert into post values(?,?,?,?,?,?,?,?)",
+                [
+                    Post[i].hanesst_id,
+                    Post[i].post_title,
+                    Post[i].post_text,
+                    Post[i].post_url,
+                    Post[i].post_type,
+                    Post[i].post_parent,
+                    Post[i].username,
+                    Post[i].pwd_hash
+                ],
+                callback);
+
+        }
+        // return db.query("Insert into post values(?,?,?,?,?,?,?,?)",
+        //     [
+        //         Post.hanesst_id,
+        //         Post.post_title,
+        //         Post.post_text,
+        //         Post.post_url,
+        //         Post.post_type,
+        //         Post.post_parent,
+        //         Post.username,
+        //         Post.pwd_hash
+        //     ],
+        //     callback);
+    },
+
 
 
     addPostnoid: function(post_title, post_text ,post_url,post_type,post_parent,
