@@ -15,17 +15,21 @@ const app = express();
 // const client = require('prom-client');
 // const register = new client.Registry();
 
+  
+
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use('/', index);
+//blah app.use blah
 app.use('/status',status);
 app.use('/post', post);
 app.use('/user', user);
 app.use('/latest',latest);
 app.use('/metrics', metrics);
+
+
 
 app.listen(3000, function ()
 {
