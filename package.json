@@ -1,26 +1,20 @@
 {
-  "name": "hacker-news-rest-api",
+  "name": "tech-news-rest-api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MDJ-Mikkel-Djurhuus/hacker-news-rest-api.git"
-  },
-  "author": "mikkel.djurhuus@gmail.com",
+  "author": "djoana.v@gmail.com",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MDJ-Mikkel-Djurhuus/hacker-news-rest-api/issues"
-  },
-  "homepage": "https://github.com/MDJ-Mikkel-Djurhuus/hacker-news-rest-api#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "fluent-logger": "^2.6.0",
+    "log4js": "^2.3.11",
     "mysql": "^2.15.0",
     "nodemon": "^1.12.1",
     "prom-client": "^10.2.2"
