@@ -15,9 +15,6 @@ const log4js = require('log4js');
 //const logger = log4js.getLogger();
 //
 const app = express();
-
-
-
 // const client = require('prom-client');
 // const register = new client.Registry();
 
