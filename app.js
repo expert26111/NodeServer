@@ -18,7 +18,7 @@ const logger = log4js.getLogger();
 log4js.configure({
     appenders: {
         console: { type: "console" },
-        logfaces: { type: 'logFaces-HTTP', url: 'http://localhost:9700' },
+        logfaces: { type: 'logFaces-HTTP', url: 'http://172.18.0.1:9700' },
          file: {type: "file", filename : '/root/log/log.log', "maxLogSize": 20480, "backups": 3 }
        //  server: { type: 'multiprocess', mode: 'master',appender: 'file', loggerHost : 'http://localhost:5000' }
     },
