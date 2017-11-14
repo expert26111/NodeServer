@@ -13,6 +13,7 @@ const metrics = require('./routes/metrics');
 const log4js = require('log4js');
 const app = express();
 
+
 const logger = log4js.getLogger();
 log4js.configure({
     appenders: {
