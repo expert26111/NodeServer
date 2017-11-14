@@ -123,4 +123,5 @@ var Post = {
     }
 
 };
+
 module.exports = Post;
