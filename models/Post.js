@@ -43,7 +43,7 @@ var Post = {
 
     getLatestRow: function(id,callback)
     {
-        return db.query("Select * from post ORDER BY hanesst_id DESC LIMIT 1",[id], callback);
+        return db.query("Select hanesst_id from post ORDER BY hanesst_id DESC LIMIT 1",[id], callback);
     },
 
     // getstatus: function(id,callback)

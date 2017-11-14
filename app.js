@@ -11,12 +11,8 @@ const status = require('./routes/status');
 const metrics = require('./routes/metrics');
 //logging
 const log4js = require('log4js');
-//log4js.configure('./log4js.js',  { cwd: 'C:\\Users\\Yoana\\Desktop\\log' });
-//const logger = log4js.getLogger();
-//
 const app = express();
-// const client = require('prom-client');
-// const register = new client.Registry();
+
 
 const logger = log4js.getLogger();
 log4js.configure({
