@@ -20,14 +20,12 @@ const c = new client.Counter({
 	help: 'Example of a counter',
 	labelNames: ['code']
 });
-c.inc(1);
 
 const g = new client.Gauge({
 	name: 'gauge',
 	help: 'Example of a gauge',
 	labelNames: ['method', 'code']
 });
-g.inc();
 
 setTimeout(() => {
 	h.labels('200').observe(Math.random());
