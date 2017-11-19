@@ -110,11 +110,11 @@ log4js.configure({
 
     // log4js.configure({
     appenders: {
-        'logfaces': { type: 'logFaces-HTTP', url: 'http://172.18.0.1:9700' },
-        'fileAll': { type: 'file', filename: '/var/log/logsAll.log' },
-        'console': { type: 'console'},
-        'fileInfo': { type: 'file', filename: '/var/log/logsInfo.log' },
-        'fileError': { type: 'file', filename: '/var/log/logsError.log' },
+        logfaces: { type: 'logFaces-HTTP', url: 'http://172.18.0.1:9700' },
+        fileAll: { type: 'file', filename: '/var/log/logsAll.log' },
+        console: { type: 'console'},
+        fileInfo: { type: 'file', filename: '/var/log/logsInfo.log' },
+        fileError: { type: 'file', filename: '/var/log/logsError.log' },
 
     },
     categories: {
