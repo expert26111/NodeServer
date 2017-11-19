@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Post = require('../models/Post');
-
+var loggerError = require('.././log4js.js').fileError;
+var loggerDebug = require('.././log4js.js').fileDebug;
+var loggerInfo = require('.././log4js.js').fileInfo;
+var net = require('.././log4js.js').logfaces;
 
 router.post('/', function (req, res, next)
 {
@@ -10,10 +13,15 @@ router.post('/', function (req, res, next)
             {
                 if (err)
                 {
+                    loggerError.error('System has error posting a post!!!');
+                    loggerDebug.debug('System has error posting a post : ', err);
+                    net.debug('System has error posting a post : ', err);
                     res.json(err);
                 }
                 else
                 {
+                  //  loggerInfo.info('Posting a post ');
+                    net.info('Posting a post ');
                     res.json(req.body);
                 }
             });
@@ -27,6 +35,8 @@ router.post('/array', function (req, res, next)
     {
         if (err)
         {
+            loggerError.error('System has error posting an array of posts!!!');
+            loggerDebug.debug('System has error posting an array of posts : ', err);
             res.json(err);
         }
         else
@@ -44,6 +54,8 @@ router.post('/noid', function (req, res, next)
     {
         if (err)
         {
+            loggerError.error('System has error posting a post with noid!!!');
+            loggerDebug.debug('System has error posting a post with noid : ', err);
             res.json(err);
         }
         else
@@ -61,10 +73,14 @@ router.get('/', function (req, res, next)
 
             if (err)
             {
+                loggerError.error('System has error getting all post!!!');
+                loggerDebug.debug('System has error getting all post : ', err);
+                net.debug('System has error getting all post : ', err);
                 res.json(err);
             }
             else
             {
+                net.info("Getting all posts ");
                 res.json(rows);
             }
 
@@ -82,10 +98,14 @@ router.get('/:id', function (req, res, next)
 
                     if (err)
                     {
+                        loggerError.error('System has error getting  post by id !!!');
+                        loggerDebug.debug('System has error getting post by id : ', err);
+                        net.debug('System has error getting post by id : ', err);
                         res.json(err);
                     }
                     else
                     {
+                        net.info('Getting a post by id');
                         res.json(rows);
                     }
             });
@@ -126,10 +146,14 @@ router.delete('/:id', function (req, res, next)
 
             if (err)
             {
+                loggerError.error('System has error getting deleting a  post!!!');
+                loggerDebug.debug('System has error getting deleting a post : ', err);
+                net.debug('System has error getting deleting a post : ', err);
                 res.json(err);
             }
             else
             {
+                net.info('Deleting a post by id');
                 res.json(count);
             }
 
@@ -144,6 +168,8 @@ router.put('/:id', function (req, res, next)
 
         if (err)
         {
+            loggerError.error('System has error getting updating a post!!!');
+            loggerDebug.debug('System has error getting updating a  post : ', err);
             res.json(err);
         }
         else

@@ -10,75 +10,32 @@ const latest = require('./routes/latest');
 const status = require('./routes/status');
 const metrics = require('./routes/metrics');
 //logging
-const log4js = require('log4js');
+//const log4js = require('log4js');
+ var logger = require('./log4js.js').fileAll;
+var loggerInfo = require('./log4js.js').fileInfo;
+
 const app = express();
-
-
-const logger = log4js.getLogger();
-log4js.configure({
-    appenders: {
-        console: { type: "console" },
-        logfaces: { type: 'logFaces-HTTP', url: 'http://172.18.0.1:9700' },
-         file: {type: "file", filename : '/root/log/log.log', "maxLogSize": 20480, "backups": 3 }
-       //  server: { type: 'multiprocess', mode: 'master',appender: 'file', loggerHost : 'http://localhost:5000' }
-    },
-    categories: {
-        default: { appenders: [ 'console', 'logfaces' , 'file' ], level: 'debug' }
-    }
-});
-
-
-setInterval(() => {
-    logger.level = 'error';
-    logger.debug("Some debug message");
-    logger.info('Some info message.');
-    logger.warn("Warning ...");
-    logger.error("ERROR ");
-    logger.fatal("FATAL ");
-
-}, 2000);
-
-
+//const logger = log4js.getLogger();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 //blah app.use blah
+// app.use(function(err, req, res, next) {
+//     log.error(err);
+//     res.send(500, 'An error occurred');
+// });
 app.use('/status',status);
 app.use('/post', post);
 app.use('/user', user);
 app.use('/latest',latest);
 app.use('/metrics', metrics);
+app.set('port', 3000);
 
-
-
-
-
-app.listen(3000, function ()
+var server = app.listen(app.get('port'), function()
 {
-    console.log('app listening...on port 3000')
-});
-
-
+     logger.info('Express server listening on port ', server.address().port, " with pid ", process.pid );
+     loggerInfo.info('Express server listening on port ', server.address().port, " with pid ", process.pid);
+})
 
 module.exports = app;
 
-// log4js.configure({
-//     appenders: {
-//         console: { type: "console" },
-//         logfaces: { type: 'logFaces-HTTP', url: 'http://localhost:9700' }
-//     },
-//     categories: {
-//         default: { appenders: [ 'console', 'logfaces' ], level: 'info' }
-//     }
-// });
-// setInterval(() => {
-//     logger.level = 'debug';
-//     logger.debug("Some debug message");
-// }, 2000);
-
-// var logger = require('fluent-logger').createFluentSender('tag', {
-//     host: 'localhost',
-//     port: 5000,
-//     timeout: 3.0
-// });
