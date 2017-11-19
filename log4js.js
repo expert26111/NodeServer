@@ -115,7 +115,7 @@ log4js.configure({
         console: { type: 'console'},
         fileInfo: { type: 'file', filename: '/var/log/logsInfo.log' },
         fileError: { type: 'file', filename: '/var/log/logsError.log' },
-
+        fileDebug: { type: 'file', filename: '/var/log/logsDebug.log' },
     },
     categories: {
         default : { appenders: ['fileAll', 'console'], level: 'all' },
