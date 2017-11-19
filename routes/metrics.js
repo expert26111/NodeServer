@@ -1,27 +1,28 @@
 const client = require('prom-client');
 const register = new client.Registry();
 const express = require('express');
+const collectDefaultMetrics = client.collectDefaultMetrics;
 
 const app = express();
 var router = express.Router();
 
-client.collectDefaultMetrics({ register });
+collectDefaultMetrics({ register });
 
 
 const h = new client.Histogram({
-	name: 'test_histogram',
+	name: 'histogram',
 	help: 'Example of a histogram',
 	labelNames: ['code']
 });
 
 const c = new client.Counter({
-	name: 'test_counter',
+	name: 'counter',
 	help: 'Example of a counter',
 	labelNames: ['code']
 });
 
 const g = new client.Gauge({
-	name: 'test_gauge',
+	name: 'gauge',
 	help: 'Example of a gauge',
 	labelNames: ['method', 'code']
 });
