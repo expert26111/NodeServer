@@ -110,7 +110,7 @@ log4js.configure({
 
     // log4js.configure({
     appenders: {
-        logfaces: { type: 'logFaces-HTTP', url: '172.18.0.1:9700' },
+        logfaces: { type: 'logFaces-HTTP', url: 'http://159.89.2.54:9700' },
         fileAll: { type: 'file', filename: '/var/log/logsAll.log' },
         console: { type: 'console'},
         fileInfo: { type: 'file', filename: '/var/log/logsInfo.log' },
