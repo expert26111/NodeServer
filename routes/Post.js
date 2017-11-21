@@ -16,13 +16,13 @@ router.post('/', function (req, res, next)
                     loggerError.error('System has error posting a post!!!');
                     loggerDebug.debug('System has error posting a post : ', err);
                     net.debug('System has error posting a post : ', err);
-                    res.json(err);
+                    res.status(500).json(err);
                 }
                 else
                 {
                   //  loggerInfo.info('Posting a post ');
                     net.info('Posting a post ');
-                    res.json(req.body);
+                    res.status(201).json(req.body);
                 }
             });
 });
@@ -37,11 +37,11 @@ router.post('/array', function (req, res, next)
         {
             loggerError.error('System has error posting an array of posts!!!');
             loggerDebug.debug('System has error posting an array of posts : ', err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else
         {
-            res.json(req.body);
+            res.status(201).json(req.body);
         }
     });
 });
@@ -56,11 +56,11 @@ router.post('/noid', function (req, res, next)
         {
             loggerError.error('System has error posting a post with noid!!!');
             loggerDebug.debug('System has error posting a post with noid : ', err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else
         {
-            res.json(req.body);
+            res.status(201).json(req.body);
         }
     });
 });
@@ -76,12 +76,12 @@ router.get('/', function (req, res, next)
                 loggerError.error('System has error getting all post!!!');
                 loggerDebug.debug('System has error getting all post : ', err);
                 net.debug('System has error getting all post : ', err);
-                res.json(err);
+                res.status(500).json(err);
             }
             else
             {
                 net.info("Getting all posts ");
-                res.json(rows);
+                res.status(200).json(rows);
             }
 
         });
@@ -101,12 +101,12 @@ router.get('/:id', function (req, res, next)
                         loggerError.error('System has error getting  post by id !!!');
                         loggerDebug.debug('System has error getting post by id : ', err);
                         net.debug('System has error getting post by id : ', err);
-                        res.json(err);
+                        res.staus(500).json(err);
                     }
                     else
                     {
                         net.info('Getting a post by id');
-                        res.json(rows);
+                        res.status(200).json(rows);
                     }
             });
     // }
@@ -149,12 +149,15 @@ router.delete('/:id', function (req, res, next)
                 loggerError.error('System has error getting deleting a  post!!!');
                 loggerDebug.debug('System has error getting deleting a post : ', err);
                 net.debug('System has error getting deleting a post : ', err);
-                res.json(err);
+                res.status(500).json(err);
+                //server error
             }
             else
             {
                 net.info('Deleting a post by id');
-                res.json(count);
+                res.status(202).json(count);
+                //status 204 no content
+                //sttaus 202 accepted
             }
 
     });
@@ -170,11 +173,11 @@ router.put('/:id', function (req, res, next)
         {
             loggerError.error('System has error getting updating a post!!!');
             loggerDebug.debug('System has error getting updating a  post : ', err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else
         {
-            res.json(rows);
+            res.status(200).json(rows);
         }
 
     });

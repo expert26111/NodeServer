@@ -16,12 +16,12 @@ router.get('/', function (req, res, next) {
             loggerError.error('System has error returning all Users User.getAllUsers!!!');
             loggerDebug.debug('System has error returning all Users User.getAllUsers : ', err);
             net.debug('System has error returning all Users User.getAllUsers  ',err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else {
             loggerInfo.info('System returning all users.');
             net.info('System returning all users. ');
-            res.json(rows);
+            res.status(200).json(rows);
         }
 
     });
@@ -39,11 +39,11 @@ router.get('/:name', function (req, res, next) {   //Yoana changed a bit because
 
                         loggerError.error('System has error returning User by Name User.getUserByName!!!');
                         loggerDebug.debug('System has error returning User by Name User.getUserByName ',err);
-                        res.json(err);
+                        res.status(500).json(err);
                     }
                     else {
                         loggerInfo.info('System returning user by name.')
-                        res.json(rows);
+                        res.status(200).json(rows);
                     }
                 });
 
@@ -73,13 +73,13 @@ router.post('/', function (req, res, next) {
             loggerError.error('System has error posting User User.addUser!!!');
             loggerDebug.debug('System has error posting User User.addUser : ',err);
             net.debug('System has error posting User User.addUser : ',err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else
         {
             loggerInfo.info('System posting User .')
             net.info('System posting User .  ');
-            res.json(req.body);
+            res.status(201).json(req.body);
         }
     });
 });
@@ -93,12 +93,12 @@ router.delete('/:name', function (req, res, next) {
             loggerError.error('System has error deleting User User.deleteUser!!!');
             loggerDebug.debug('System has error deleting User User.deleteUser ', err);
             net.debug('System has error deleting User User.deleteUser ', err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else {
             loggerInfo.info('System deleting user .')
             net.info('System deleting user .');
-            res.json(count);
+            res.status(202).json(count);
         }
 
     });
@@ -112,11 +112,11 @@ router.put('/:name', function (req, res, next) {
 
             loggerError.error('System has error updating User User.updateUser!!!');
             loggerDebug.debug('System has error updating User User.updateUser ',err);
-            res.json(err);
+            res.status(500).json(err);
         }
         else {
             loggerInfo.info('System updating user by name.')
-            res.json(rows);
+            res.status(200).json(rows);
         }
     });
 });

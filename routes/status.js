@@ -18,7 +18,7 @@ router.get('/', function (req, res, next)
             logger.info('System was asked if it is alive !!!');
             loggerInfo.info('System was asked if it is alive !!!');
             net.info('System was asked if it is alive !!!');
-            res.json("Alive");
+            res.status(200).json("Alive");
 
                     // if (err)
                     // {
