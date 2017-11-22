@@ -6,11 +6,12 @@ var loggerDebug = require('.././log4js.js').fileDebug;
 var loggerInfo = require('.././log4js.js').fileInfo;
 var net = require('.././log4js.js').logfaces;
 
-router.get('/', function (req, res, next) {
 
+//this routes will require a token.
+
+router.get('/', function (req, res, next) {
     User.getAllUsers(function (err, rows)
     {
-
         if (err)
         {
             loggerError.error('System has error returning all Users User.getAllUsers!!!');
@@ -23,9 +24,7 @@ router.get('/', function (req, res, next) {
             net.info('System returning all users. ');
             res.status(200).json(rows);
         }
-
     });
-
 });
 
 router.get('/:name', function (req, res, next) {   //Yoana changed a bit because it is not working
