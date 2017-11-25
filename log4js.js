@@ -22,7 +22,7 @@
 //                             "type": "dateFile",
 //                             "filename": "C:\\Users\\Yoana\\Desktop\\log\\system.txt",
 //                             "pattern": "-yyyy-MM-dd",
-//                             "backups": 3,
+//                             "backups": 3,f
 //                             "level": "ALL"
 //                         },
 //                         {

@@ -27,7 +27,7 @@ router.get('/', function (req, res, next)
                 net.info("Info for getting latest Story ", rows);
                 loggerInfo.info("Info for getting latest Story ", rows);
                 latest.info("Info for getting latest Story ", rows);
-                res.status(200).json(rows);
+                res.status(200).json(rows[0].hanesst_id);
 
             }
     });
