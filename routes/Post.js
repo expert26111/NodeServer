@@ -61,6 +61,12 @@ router.post('/noid', function (req, res, next)
         else
         {
             res.status(201).json(req.body);
+
+            Post.addPostnoid(req.body.post_title,req.body.post_text,req.body.post_url,
+                req.body.post_type,req.body.post_parent,req.body.username,
+                req.body.pwd_hash,function (err, count){
+
+                });
         }
     });
 });
@@ -93,6 +99,26 @@ router.get('/:id', function (req, res, next)
     // if (req.params.id)
     // {
 
+
+            // Post.getPostById(req.params.id, function (err, rows)
+            // {
+            //
+            //     if (err)
+            //     {
+            //         loggerError.error('System has error getting  post by id !!!');
+            //         loggerDebug.debug('System has error getting post by id : ', err);
+            //         net.debug('System has error getting post by id : ', err);
+            //         res.staus(500).json(err);
+            //     }
+            //     else
+            //     {
+            //         net.info('Getting a post by id');
+            //         res.status(200).json(rows);
+            //     }
+            // });
+
+
+
             Post.getPostById(req.params.id, function (err, rows)
             {
 
@@ -105,6 +131,7 @@ router.get('/:id', function (req, res, next)
                     }
                     else
                     {
+
                         net.info('Getting a post by id');
                         res.status(200).json(rows);
                     }
