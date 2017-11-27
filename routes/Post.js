@@ -72,6 +72,8 @@ router.post('/noid', function (req, res, next)
 });
 
 
+
+
 router.get('/', function (req, res, next)
 {
         Post.getAllPosts(function (err, rows)
