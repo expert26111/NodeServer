@@ -12,6 +12,8 @@ const metrics = require('./routes/metrics');
 const routerAuthenticate = require('./routes/authenticate');
 var jwt = require('jsonwebtoken');
 var config = require('./config');
+var requestIp = require('request-ip');
+const middleauthe = require('./middle_authenticate');
 //logging
 //const log4js = require('log4js');
  var logger = require('./log4js.js').fileAll;
@@ -29,6 +31,68 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // });
 
 app.use('/authenticate',routerAuthenticate);
+
+// app.use(requestIp.mw())
+// //app.use('/post'
+// app.use(function(req,res,next){
+//     var ip = req.clientIp;
+//     //res.end(ip);
+//     console.log("the ip is ",ip);
+//     if (ip != '::1')
+//     {
+//           next();
+//           //
+//     }else
+//     {
+        //app.use('middleauthe');
+       //               console.log('I am here ');
+       //                  app.use(function(req, res, next) {
+       //
+       //              // check header or url parameters or post parameters for token
+       //              var token = req.body.token || req.query.token || req.headers['x-access-token'];
+       //              console.log(token);
+       //              // decode token
+       //              if (token) {
+       //
+       //                  // verifies secret and checks exp
+       //                  jwt.verify(token, config.secret , function(err, decoded) {
+       //                      if (err) {
+       //                          return res.json({ success: false, message: 'Failed to authenticate token.' });
+       //                      } else {
+       //                          // if everything is good, save to request for use in other routes
+       //                          req.decoded = decoded;
+       //                          next();
+       //                      }
+       //                  });
+       //
+       //              } else {
+       //
+       //                  // if there is no token
+       //                  // return an error
+       //                  return res.status(403).send({
+       //                      success: false,
+       //                      message: 'No token provided.'
+       //                  });
+       //
+       //              }
+       //          });
+                        app.use('/status',status);
+                        app.use('/post', post);
+                        app.use('/user', user);
+                        app.use('/latest',latest);
+                        app.use('/metrics', metrics);
+
+  //  }
+
+//})
+
+//
+// app.use('/status',status);
+// app.use('/post', post);
+// app.use('/user', user);
+// app.use('/latest',latest);
+// app.use('/metrics', metrics);
+
 // app.use(function(req, res, next) {
 //
 //     // check header or url parameters or post parameters for token
@@ -59,12 +123,12 @@ app.use('/authenticate',routerAuthenticate);
 //
 //     }
 // });
-app.use('/status',status);
-app.use('/post', post);
-app.use('/user', user);
-app.use('/latest',latest);
-app.use('/metrics', metrics);
-app.set('port', 3000);
+// app.use('/status',status);
+// app.use('/post', post);
+// app.use('/user', user);
+// app.use('/latest',latest);
+// app.use('/metrics', metrics);
+ app.set('port', 3000);
 
 var server = app.listen(app.get('port'), function()
 {
@@ -74,3 +138,36 @@ var server = app.listen(app.get('port'), function()
 
 module.exports = app;
 
+    //
+    // app.use('/post',function(req, res, next)
+    // {
+    //     //
+    //     // check header or url parameters or post parameters for token
+    //     var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    //
+    //     // decode token
+    //     if (token) {
+    //
+    //         // verifies secret and checks exp
+    //         jwt.verify(token, config.secret , function(err, decoded) {
+    //             if (err) {
+    //                 return res.json({ success: false, message: 'Failed to authenticate token.' });
+    //             } else {
+    //                 // if everything is good, save to request for use in other routes
+    //                 req.decoded = decoded;
+    //                 next();
+    //             }
+    //         });
+    //
+    //     } else
+    //     {
+    //
+    //         // if there is no token
+    //         // return an error
+    //         return res.status(403).send({
+    //             success: false,
+    //             message: 'No token provided.'
+    //         });
+    //
+    //     }
+    // });

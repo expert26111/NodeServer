@@ -16,10 +16,12 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "fluent-logger": "^2.6.0",
+    "ip": "^1.1.5",
     "jsonwebtoken": "^8.1.0",
     "log4js": "^2.3.11",
     "mysql": "^2.15.0",
     "nodemon": "^1.12.1",
-    "prom-client": "^10.2.2"
+    "prom-client": "^10.2.2",
+    "request-ip": "^2.0.2"
   }
 }

@@ -5,12 +5,17 @@ var loggerError = require('.././log4js.js').fileError;
 var loggerDebug = require('.././log4js.js').fileDebug;
 var loggerInfo = require('.././log4js.js').fileInfo;
 var net = require('.././log4js.js').logfaces;
+var jwt = require('jsonwebtoken');
+var config = require('.././config');
+//var ip = require('ip');
 
 router.post('/', function (req, res, next)
 {
             console.log("the body is "+req.body);
             Post.addPost(req.body, function (err, count)
             {
+
+
                 if (err)
                 {
                     loggerError.error('System has error posting a post!!!');
@@ -21,8 +26,51 @@ router.post('/', function (req, res, next)
                 else
                 {
                   //  loggerInfo.info('Posting a post ');
-                    net.info('Posting a post ');
-                    res.status(201).json(req.body);
+                  //  console.log('the ip is ',req.ip.toString());//to check from where they come
+                    //::1
+                    //138.68.91.198
+                    if(req.ip.toString() != '138.68.91.198')
+                    {
+                        net.info('Posting a post from Helge ');
+                        res.status(201).json(req.body);
+
+                    }else{
+
+
+                                var token = req.body.token || req.query.token || req.headers['x-access-token'];
+                                if (token)
+                                {
+
+                                    // verifies secret and checks exp
+                                    jwt.verify(token, config.secret , function(err, decoded)
+                                    {
+                                        if (err)
+                                        {
+                                            return res.json({ success: false, message: 'Failed to authenticate token.' });
+                                        } else
+                                        {
+                                            // if everything is good, save to request for use in other routes
+                                            req.decoded = decoded;
+                                            net.info('Posting a post from authenticated user');
+                                            res.status(201).json(req.body);
+                                            //next();
+                                        }
+                                    });
+
+                                } else
+                                {
+
+                                    // if there is no token
+                                    // return an error
+                                    net.info('Trying to post a post from non authenticated user');
+                                    return res.status(403).send({
+                                        success: false,
+                                        message: 'No token provided.'
+                                    });
+
+                                }
+
+                    }
                 }
             });
 });
@@ -30,7 +78,7 @@ router.post('/', function (req, res, next)
 
 router.post('/array', function (req, res, next)
 {
-    console.log("the body is ",req.body);
+   // console.log("the body is ",req.body);
     Post.addPostArray(req.body, function (err, count)
     {
         if (err)
@@ -62,11 +110,7 @@ router.post('/noid', function (req, res, next)
         {
             res.status(201).json(req.body);
 
-            Post.addPostnoid(req.body.post_title,req.body.post_text,req.body.post_url,
-                req.body.post_type,req.body.post_parent,req.body.username,
-                req.body.pwd_hash,function (err, count){
 
-                });
         }
     });
 });
@@ -88,6 +132,8 @@ router.get('/', function (req, res, next)
             }
             else
             {
+              //  console.log('the ip is ',req.ip.toString());
+              //  console.log('the ip is ',ip.address());
                 net.info("Getting all posts ");
                 res.status(200).json(rows);
             }
@@ -97,29 +143,6 @@ router.get('/', function (req, res, next)
 
 router.get('/:id', function (req, res, next)
 {
-
-    // if (req.params.id)
-    // {
-
-
-            // Post.getPostById(req.params.id, function (err, rows)
-            // {
-            //
-            //     if (err)
-            //     {
-            //         loggerError.error('System has error getting  post by id !!!');
-            //         loggerDebug.debug('System has error getting post by id : ', err);
-            //         net.debug('System has error getting post by id : ', err);
-            //         res.staus(500).json(err);
-            //     }
-            //     else
-            //     {
-            //         net.info('Getting a post by id');
-            //         res.status(200).json(rows);
-            //     }
-            // });
-
-
 
             Post.getPostById(req.params.id, function (err, rows)
             {
@@ -138,34 +161,7 @@ router.get('/:id', function (req, res, next)
                         res.status(200).json(rows);
                     }
             });
-    // }
-    // else {
-    //
-    //             Post.getAllPosts(function (err, rows) {
-    //
-    //                 if (err) {
-    //                     res.json(err);
-    //                 }
-    //                 else {
-    //                     res.json(rows);
-    //                 }
-    //
-    //             });
-    //     }
 });
-
-
-// router.post('/', function (req, res, next) {
-//
-//     Post.addPost(req.body, function (err, count) {
-//         if (err) {
-//             res.json(err);
-//         }
-//         else {
-//             res.json(req.body);
-//         }
-//     });
-// });
 
 router.delete('/:id', function (req, res, next)
 {
@@ -194,7 +190,7 @@ router.delete('/:id', function (req, res, next)
 
 router.put('/:id', function (req, res, next)
 {
-
+// check if id is anumber
     Post.updatePost(req.params.id, req.body, function (err, rows)
     {
 
