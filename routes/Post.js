@@ -11,7 +11,7 @@ var config = require('.././config');
 
 router.post('/', function (req, res, next)
 {
-            console.log("the body is "+req.body);
+            // console.log("the body is "+req.body);
             Post.addPost(req.body, function (err, count)
             {
 
@@ -23,55 +23,18 @@ router.post('/', function (req, res, next)
                     net.debug('System has error posting a post : ', err);
                     res.status(500).json(err);
                 }
-                else
-                {
-                  //  loggerInfo.info('Posting a post ');
-                  //  console.log('the ip is ',req.ip.toString());//to check from where they come
+                else {
+                    //  loggerInfo.info('Posting a post ');
+                    //  console.log('the ip is ',req.ip.toString());//to check from where they come
                     //::1
                     //138.68.91.198
-                    console.log("THE IP IS ",req.ip.toString())
-                 //   if(req.ip.toString() != '138.68.91.198')
-                    if(req.ip.toString().includes('138.68.91.198'))
-                    {
-                        net.info('Posting a post from Helge WITH IP ',req.ip.toString());
+                    // console.log("THE IP IS ", req.ip.toString())
+                    //   if(req.ip.toString() != '138.68.91.198')
+                    // if (req.ip.toString().includes('138.68.91.198')) {
+                        net.info('Posting a post from Helge WITH IP ', req.ip.toString());
                         res.status(201).json(req.body);
 
-                    }else{
-                                var token = req.body.token || req.query.token || req.headers['x-access-token'];
-                                if (token)
-                                {
-
-                                    // verifies secret and checks exp
-                                    jwt.verify(token, config.secret , function(err, decoded)
-                                    {
-                                        if (err)
-                                        {
-                                            return res.json({ success: false, message: 'Failed to authenticate token.' });
-                                        } else
-                                        {
-                                            // if everything is good, save to request for use in other routes
-                                            req.decoded = decoded;
-                                            net.info('Posting a post from authenticated user');
-                                            res.status(201).json(req.body);
-                                            //next();
-                                        }
-                                    });
-
-                                } else
-                                {
-
-                                    // if there is no token
-                                    // return an error
-                                    net.info('Trying to post a post from non authenticated user');
-                                    return res.status(403).send({
-                                        success: false,
-                                        message: 'No token provided.'
-                                    });
-
-                                }
-
                     }
-                }
             });
 });
 
