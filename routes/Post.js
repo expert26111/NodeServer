@@ -29,7 +29,7 @@ router.post('/', function (req, res, next)
                   //  console.log('the ip is ',req.ip.toString());//to check from where they come
                     //::1
                     //138.68.91.198
-                  //  console.log("THE IP IS ",req.ip.toString())
+                    console.log("THE IP IS ",req.ip.toString())
                  //   if(req.ip.toString() != '138.68.91.198')
                     if(req.ip.toString().includes('138.68.91.198'))
                     {
@@ -37,8 +37,6 @@ router.post('/', function (req, res, next)
                         res.status(201).json(req.body);
 
                     }else{
-
-
                                 var token = req.body.token || req.query.token || req.headers['x-access-token'];
                                 if (token)
                                 {
