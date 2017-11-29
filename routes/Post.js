@@ -31,7 +31,7 @@ router.post('/', function (req, res, next)
 
                             }else{
 
-
+                                net.info('I am inside else blog');
                                 var token = req.body.token || req.query.token || req.headers['x-access-token'];
                                 if (token)
                                 {
