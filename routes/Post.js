@@ -24,18 +24,6 @@ router.post('/', function (req, res, next)
                     res.status(500).json(err);
                 }
                 else {
-                    //  loggerInfo.info('Posting a post ');
-                    //  console.log('the ip is ',req.ip.toString());//to check from where they come
-                    //::1
-                    //138.68.91.198
-                    // console.log("THE IP IS ", req.ip.toString())
-                    //   if(req.ip.toString() != '138.68.91.198')
-                    // if (req.ip.toString().includes('138.68.91.198')) {
-                       // net.info('Posting a post from Helge WITH IP ', req.ip.toString());
-                        //res.status(201).json(req.body);
-
-                            // console.log("THE IP IS ",req.ip.toString())
-                            //   if(req.ip.toString() != '138.68.91.198')
                             if(req.ip.toString().includes('138.68.91.198') )
                             {
                                 net.info('Posting a post from Helge WITH IP ',req.ip.toString());
