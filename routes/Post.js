@@ -12,7 +12,9 @@ var config = require('.././config');
 router.post('/', function (req, res, next)
 {
             // console.log("the body is "+req.body);
-            Post.addPost(req.body, function (err, count)
+            Post.addPostnoid(req.body.post_title,req.body.post_text,req.body.post_url,
+         req.body.post_type,req.body.post_parent,req.body.username,
+         req.body.pwd_hash,function (err, count)
             {
 
 
@@ -24,14 +26,17 @@ router.post('/', function (req, res, next)
                     res.status(500).json(err);
                 }
                 else {
+
                             if(req.ip.toString().includes('138.68.91.198') )
                             {
+                               // console.log('The ip is  ',req.ip.toString());
                                 net.info('Posting a post from Helge WITH IP ',req.ip.toString());
                                 res.status(201).json(req.body);
 
                             }else{
 
-                                net.info('I am inside else blog');
+                                //net.info('I am inside else blog');
+                                ///console.log('The ip is  ',req.ip.toString());
                                 var token = req.body.token || req.query.token || req.headers['x-access-token'];
                                 if (token)
                                 {
@@ -73,44 +78,46 @@ router.post('/', function (req, res, next)
 });
 
 
-router.post('/array', function (req, res, next)
-{
-   // console.log("the body is ",req.body);
-    Post.addPostArray(req.body, function (err, count)
-    {
-        if (err)
-        {
-            loggerError.error('System has error posting an array of posts!!!');
-            loggerDebug.debug('System has error posting an array of posts : ', err);
-            res.status(500).json(err);
-        }
-        else
-        {
-            res.status(201).json(req.body);
-        }
-    });
-});
+// router.post('/array', function (req, res, next)
+// {
+//    // console.log("the body is ",req.body);
+//     Post.addPostArray(req.body, function (err, count)
+//     {
+//         if (err)
+//         {
+//             loggerError.error('System has error posting an array of posts!!!');
+//             loggerDebug.debug('System has error posting an array of posts : ', err);
+//             res.status(500).json(err);
+//         }
+//         else
+//         {
+//             res.status(201).json(req.body);
+//         }
+//     });
+// });
 
-router.post('/noid', function (req, res, next)
-{
-    Post.addPostnoid(req.body.post_title,req.body.post_text,req.body.post_url,
-        req.body.post_type,req.body.post_parent,req.body.username,
-        req.body.pwd_hash,function (err, count)
-    {
-        if (err)
-        {
-            loggerError.error('System has error posting a post with noid!!!');
-            loggerDebug.debug('System has error posting a post with noid : ', err);
-            res.status(500).json(err);
-        }
-        else
-        {
-            res.status(201).json(req.body);
-
-
-        }
-    });
-});
+// router.post('/noid', function (req, res, next)
+// {
+//     Post.addPostnoid(
+// req.body.post_title,req.body.post_text,req.body.post_url,
+//         req.body.post_type,req.body.post_parent,req.body.username,
+//         req.body.pwd_hash,
+// function (err, count)
+//     {
+//         if (err)
+//         {
+//             loggerError.error('System has error posting a post with noid!!!');
+//             loggerDebug.debug('System has error posting a post with noid : ', err);
+//             res.status(500).json(err);
+//         }
+//         else
+//         {
+//             res.status(201).json(req.body);
+//
+//
+//         }
+//     });
+// });
 
 
 
