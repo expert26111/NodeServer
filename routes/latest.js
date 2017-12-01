@@ -16,16 +16,16 @@ router.get('/', function (req, res, next)
     {
             if (err)
             {
-                loggerError.error("Error getting latest Story ");
-                loggerDebug.debug("Debug for latest Story: ", err);
+               // loggerError.error("Error getting latest Story ");
+                //loggerDebug.debug("Debug for latest Story: ", err);
                 net.debug("Debug for latest Story: ", err);
-                latest.debug('Debug for latest Story: ', err)
+               // latest.debug('Debug for latest Story: ', err)
                 res.status(500).json(err);
             }
             else
             {
                 net.info("Info for getting latest Story ", rows);
-                loggerInfo.info("Info for getting latest Story ", rows);
+               // loggerInfo.info("Info for getting latest Story ", rows);
                 latest.info("Info for getting latest Story ", rows);
                 res.status(200).json(rows[0].hanesst_id);
 

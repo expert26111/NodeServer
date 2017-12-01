@@ -15,6 +15,14 @@ var Post = {
     getAllPosts: function(callback) {
         return db.query("Select * from post", callback);
     },
+    getlastNPosts: function(callback) {
+        return db.query("Select * from post order by id desc limit 100 ", callback);
+    },
+
+    getlastRangePosts: function(N , M , callback) {
+        console.log("the n is ", N, " and the M is ,",M);
+        return db.query("Select * from post where hanesst_id <= ? AND hanesst_id >= ? ",[N , M], callback);
+    },
 
     getPostById: function(id, callback) {
         return db.query("select * from post where hanesst_id=?", [id], callback);
@@ -101,7 +109,7 @@ var Post = {
                           callback)
     {
         var values = [post_title,post_text, post_url,post_type, post_parent,username, pwd_hash ]
-        console.log("the post is ", Post);
+      //  console.log("the post is ", Post);
         return db.query("Insert into post (post_title,post_text,post_url,post_type,post_parent,username,pwd_hash) values(?,?,?,?,?,?,?)",
             values,
             callback);

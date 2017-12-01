@@ -20,8 +20,8 @@ router.post('/', function (req, res, next)
 
                 if (err)
                 {
-                    loggerError.error('System has error posting a post!!!');
-                    loggerDebug.debug('System has error posting a post : ', err);
+                 //   loggerError.error('System has error posting a post!!!');
+                 //   loggerDebug.debug('System has error posting a post : ', err);
                     net.debug('System has error posting a post : ', err);
                     res.status(500).json(err);
                 }
@@ -119,31 +119,53 @@ router.post('/', function (req, res, next)
 //     });
 // });
 
-
-
-
 router.get('/', function (req, res, next)
 {
-        Post.getAllPosts(function (err, rows)
+    Post.getAllPosts(function (err, rows)
+    {
+
+        if (err)
         {
+            loggerError.error('System has error getting all post!!!');
+            loggerDebug.debug('System has error getting all post : ', err);
+            net.debug('System has error getting all post : ', err);
+            res.status(500).json(err);
+        }
+        else
+        {
+            //  console.log('the ip is ',req.ip.toString());
+            //  console.log('the ip is ',ip.address());
+            net.info("Getting all posts ");
+            res.status(200).json(rows);
+        }
 
-            if (err)
-            {
-                loggerError.error('System has error getting all post!!!');
-                loggerDebug.debug('System has error getting all post : ', err);
-                net.debug('System has error getting all post : ', err);
-                res.status(500).json(err);
-            }
-            else
-            {
-              //  console.log('the ip is ',req.ip.toString());
-              //  console.log('the ip is ',ip.address());
-                net.info("Getting all posts ");
-                res.status(200).json(rows);
-            }
-
-        });
+    });
 });
+
+
+// router.get('/:begin/:last4', function (req, res, next)
+// {
+//         Post.getlastRangePosts(req.params.begin, req.params.last4,function (err, rows)
+//         {
+//
+//             if (err)
+//             {
+//                 loggerError.error('System has error getting all post!!!');
+//                 loggerDebug.debug('System has error getting all post : ', err);
+//                 net.debug('System has error getting all post : ', err);
+//                 res.status(500).json(err);
+//             }
+//             else
+//             {
+//               //  console.log('the ip is ',req.ip.toString());
+//               //  console.log('the ip is ',ip.address());
+//                 net.info("Getting range posts from ", req.params.begin , req.params.last);
+//                 console.log("the rows are ",rows);
+//                 res.status(200).json(rows);
+//             }
+//
+//         });
+// });
 
 router.get('/:id', function (req, res, next)
 {
