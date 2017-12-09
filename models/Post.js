@@ -121,6 +121,7 @@ var Post = {
         // IMPLEMENT DELETION OF CHILD COMMENTS?
     },
 
+
     updatePost: function(id, Post, callback) {
         return db.query("update post set post_title=?,post_text=?,post_url=? where hanesst_id=?",
             [
