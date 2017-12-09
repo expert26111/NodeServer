@@ -110,7 +110,7 @@ var Post = {
     {
         var values = [hanesst_id,post_title,post_text, post_url,post_type, post_parent,username, pwd_hash ]
       //  console.log("the post is ", Post);
-        return db.query("Insert into post (hanesst_id,post_title,post_text,post_url,post_type,post_parent,username,pwd_hash) values(?,?,?,?,?,?,?)",
+        return db.query("Insert into post (hanesst_id,post_title,post_text,post_url,post_type,post_parent,username,pwd_hash) values(?,?,?,?,?,?,?,?)",
             values,
             callback);
     },
