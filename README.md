@@ -1,1 +1,1 @@
-# hacker-news-rest-api
+# technews rest api
