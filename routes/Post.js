@@ -11,6 +11,7 @@ var config = require('.././config');
 
 router.post('/', function (req, res, next)
 {
+
             // console.log("the body is "+req.body);
             Post.addPostnoid(req.body.post_title,req.body.post_text,req.body.post_url,
          req.body.post_type,req.body.post_parent,req.body.username,
